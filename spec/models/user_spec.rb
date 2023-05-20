@@ -2,7 +2,7 @@
 #
 # Table name: users
 #
-#  id                     :bigint           not null, primary key
+#  id                     :uuid             not null, primary key
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string
 #  reset_password_sent_at :datetime
@@ -13,6 +13,7 @@
 #  phone                  :string           not null
 #  role                   :integer          not null
 #  type                   :string           default("Patient"), not null
+#  category_id            :uuid
 #
 require 'rails_helper'
 

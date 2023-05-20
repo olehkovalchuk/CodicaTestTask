@@ -2,7 +2,7 @@
 #
 # Table name: users
 #
-#  id                     :bigint           not null, primary key
+#  id                     :uuid             not null, primary key
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string
 #  reset_password_sent_at :datetime
@@ -13,6 +13,7 @@
 #  phone                  :string           not null
 #  role                   :integer          not null
 #  type                   :string           default("Patient"), not null
+#  category_id            :uuid
 #
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
@@ -21,12 +22,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :phone, uniqueness: true
+  validates :name, presence: true
+
+  enum :role, { admin: 0, doctor: 1, patient: 2 }
 
   def email_required?
     false
   end
   
-  def email_changed?
+  def will_save_change_to_email?
     false
-  end    
+  end
 end

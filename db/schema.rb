@@ -10,11 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_19_142258) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_20_152128) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
-  create_table "users", force: :cascade do |t|
+  create_table "appointments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "recommendation", default: ""
+    t.integer "status", default: 0, null: false
+    t.uuid "doctor_id", null: false
+    t.uuid "patient_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
+    t.index ["patient_id"], name: "index_appointments_on_patient_id"
+  end
+
+  create_table "categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -25,7 +43,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_142258) do
     t.string "phone", null: false
     t.integer "role", null: false
     t.string "type", default: "Patient", null: false
+    t.uuid "category_id"
+    t.index ["category_id"], name: "index_users_on_category_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "appointments", "users", column: "doctor_id"
+  add_foreign_key "appointments", "users", column: "patient_id"
+  add_foreign_key "users", "categories"
 end
