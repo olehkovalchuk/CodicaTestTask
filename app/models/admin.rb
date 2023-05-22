@@ -16,7 +16,6 @@
 #  category_id            :uuid
 #
 class Admin < User
-
   before_create :set_role
 
   private

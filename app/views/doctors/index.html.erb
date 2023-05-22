@@ -1,0 +1,30 @@
+<%= render "shared/links"%>
+<div class="d-flex flex-column justify-content-center align-items-center">
+ <h2 class="page-title">Doctors List</h2>
+ 
+<table class="table table-striped text-center mb-3 w-50">
+  <thead>
+    <tr>
+      <th scope="col">Doctors name</th>
+      <th scope="col">Category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @doctors.sort_by(&:category_id).each do |doctor| %>
+      <tr>
+        <td><%= doctor.name %></td>
+        <td><%= link_to doctor.category.name, patient_category_path(current_user, doctor.category) %></td>
+        <% if doctor.appointments.opened.count < 10 %>
+          <td> <%= link_to "Create an Appointment", new_patient_appointment_path(current_user, doctor_id: doctor, category_id: doctor.category_id), class: "btn btn-sm btn-primary rounded-pill" %></td>
+        <% else %>
+          <td><span>no free entries</span></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+  <div class="d-flex justify-content-between mb-3 w-50">
+    <%= link_to "Create an Appointment", new_patient_appointment_path(current_user),  class: "btn btn-sm btn-primary rounded-pill" %>
+  </div>
+</div>

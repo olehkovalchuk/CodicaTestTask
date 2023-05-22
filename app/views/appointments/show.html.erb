@@ -1,0 +1,18 @@
+<%= render "shared/links"%>
+<div class="d-flex flex-column justify-content-center align-items-center pt-5">
+  <h2 class="page-title"><%= current_user.name %> Appointment to <%= @appointment.doctor.category.name %></h2>
+  <div class="bg-light d-flex justify-content-between mb-3 w-50">
+    <span class="mx-2" >Doctor: </span>
+    <span class="mx-2" ><%= @appointment.doctor.name  %> </span>
+  </div>
+
+  <div class="bg-light d-flex justify-content-between mb-3 w-50">
+    <span class="mx-2" >Recommendation: </span>
+    <p class="mx-2" ><%= @appointment.recommendation %> </p>
+  </div>
+
+  <div class="bg-light d-flex justify-content-between mb-3 w-50">
+    <span class="mx-2" >Status: </span>
+    <span class="mx-2" ><%= @appointment.status %> </span>
+  </div>
+</div>

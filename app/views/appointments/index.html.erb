@@ -1,0 +1,25 @@
+<%= render "shared/links"%>
+<div class="d-flex flex-column justify-content-center align-items-center pt-5">
+  <h2 class="page-title"><%= current_user.name %> Appointments</h2>
+  <% if @appointments.present? %>
+    <table class="table table-striped text-center mb-3 w-50">
+      <thead>
+        <tr>
+          <th scope="col">Appointment to</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @appointments.sort_by(&:created_at).each do |appointment| %>
+          <tr>
+            <td>Appointment to <%= appointment.doctor.category.name %></td>
+            <td><%= appointment.status %></td>
+            <td> <%= link_to "View", appointment_path(appointment),  class: "btn btn-sm btn-primary rounded-pill" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <h5>You don't have any appointments yet</h5>
+  <% end %>
+</div>

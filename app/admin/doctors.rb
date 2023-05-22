@@ -7,7 +7,7 @@ ActiveAdmin.register Doctor do
     column :phone
     column :category
     column 'open_appointments' do |doctor|
-      doctor.appointments.open.count
+      doctor.appointments.opened.count
     end
     column 'closed_appointments' do |doctor|
       doctor.appointments.closed.count
@@ -35,7 +35,7 @@ ActiveAdmin.register Doctor do
       row :phone
       row :category 
       row 'open_appointments' do |doctor|
-        doctor.appointments.open
+        doctor.appointments.opened
       end
       row 'closed_appointments' do |doctor|
         doctor.appointments.closed

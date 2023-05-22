@@ -7,7 +7,7 @@ ActiveAdmin.register Patient do
     column :name
     column :phone
     column 'open_appointments' do |patient|
-      patient.appointments.open.count
+      patient.appointments.opened.count
     end
     column 'closed_appointments' do |patient|
       patient.appointments.closed.count
@@ -20,7 +20,7 @@ ActiveAdmin.register Patient do
       row :name
       row :phone
       row 'open_appointments' do |patient|
-        patient.appointments.open
+        patient.appointments.opened
       end
       row 'closed_appointments' do |patient|
         patient.appointments.closed

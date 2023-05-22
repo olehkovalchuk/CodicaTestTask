@@ -1,0 +1,6 @@
+<div class="d-flex justify-content-end">
+  <% unless current_page?(root_path) %>
+    <%= link_to "Profile", root_path, class: "btn btn-sm btn-primary rounded-pill mx-2" %>
+  <% end %>  
+  <%= link_to "Log Out", destroy_user_session_path, method: 'delete', class: "btn btn-sm btn-primary rounded-pill" %>
+</div>
