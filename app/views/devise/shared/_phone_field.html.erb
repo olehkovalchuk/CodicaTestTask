@@ -1,0 +1,12 @@
+<div class="form-group mb-3 w-50">
+  <%= f.label :phone, class: "form-label", for: "phone"%>
+  <%= f.telephone_field :phone, autofocus: true, autocomplete: "phone", id: "phone", class: "form-control", placeholder: "(067)111 22 33" %>
+</div>
+
+<script>
+  let element = document.getElementById('phone');
+  let maskOptions = {
+    mask: '+{38(\\0}00)000-00-00'
+  };
+  let mask = IMask(element, maskOptions);
+</script>

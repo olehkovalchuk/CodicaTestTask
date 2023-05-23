@@ -11,4 +11,5 @@ class Category < ApplicationRecord
   has_many :doctors, dependent: :restrict_with_exception
 
   validates :name, presence: true, length: {maximum: 255}
+  validates_uniqueness_of :name
 end

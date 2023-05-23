@@ -21,9 +21,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :rememberable, :validatable
 
-  validates :phone, uniqueness: true
   validates :name, presence: true
-
+  validates_uniqueness_of :phone
+  validates :phone, format: { with: /\+38\(0\d{2}\)\d{3}-\d{2}-\d{2}/,
+                              message: 'Invalid phone format. Phone format +38(0xx)xxx-xx-xx'}
+                              
   enum :role, { admin: 0, doctor: 1, patient: 2 }
 
   def email_required?

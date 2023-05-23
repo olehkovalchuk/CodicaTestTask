@@ -15,7 +15,7 @@ class AppointmentsController < ApplicationController
       if @appointment.save
         format.html { redirect_to appointment_path(@appointment), notice: "Appointment successfully created" }
       else
-        format.html { redirect_to root_path, alert: @comment.errors.first.type }
+        format.html { redirect_to root_path, alert: @appointment.errors.first.type }
       end
     end
   end
@@ -24,9 +24,22 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.find(params[:id])
   end
 
+  def edit
+    @appointment = Appointment.find(params[:id])
+  end
+  def update
+    @appointment = Appointment.find(params[:id])
+    respond_to do |format|
+      if @appointment.update(appointment_params)
+        @appointment.closed!
+        format.html { redirect_to appointment_path(@appointment), success: "Appointment updated" }
+      end
+    end
+  end
+
   private
 
   def appointment_params
-    params.require(:appointment).permit(:id, :doctor_id, :patient_id)
+    params.require(:appointment).permit(:id, :doctor_id, :patient_id, :recommendation)
   end
 end

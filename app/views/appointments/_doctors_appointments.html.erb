@@ -1,0 +1,21 @@
+<table class="table table-striped text-center mb-3 w-50">
+  <thead>
+    <tr>
+      <th scope="col">Patient name</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% appointments.sort_by(&:created_at).each do |appointment| %>
+      <tr>
+        <td><%= appointment.patient.name %></td>
+        <td><%= appointment.status %></td>
+        <td>
+          <% if appointment.opened? %>
+            <%= link_to "Leave Recommendation", edit_doctor_appointment_path(current_user, appointment),  class: "btn btn-sm btn-primary rounded-pill" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

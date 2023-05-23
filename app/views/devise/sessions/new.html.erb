@@ -3,10 +3,7 @@
   <div class="d-flex flex-column justify-content-center align-items-center">
     <h2 class="page-title">Log in</h2>
     
-    <div class="form-group mb-3 w-50">
-      <%= f.label :phone, class: "form-label" %>
-      <%= f.telephone_field :phone, autofocus: true, autocomplete: "phone", class:"form-control"  %>
-    </div>
+    <%= render "devise/shared/phone_field", f: f %>
 
     <div class="form-group mb-3 w-50">
       <%= f.label :password, class: "form-label" %>

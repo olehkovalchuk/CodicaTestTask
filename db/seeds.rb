@@ -1,6 +1,4 @@
 require 'faker'
-Faker::Base.numerify('(0##) ### ####')
-
 
 TEST_PASSWORD = 'password'
 CATEGORIES = %w[cardiologist therapist neurologist]
@@ -10,20 +8,20 @@ CATEGORIES.each do |category|
   c.save! if c.new_record?
 end
 
-admin = Admin.find_or_initialize_by(phone: '067 111 11 11')
+admin = Admin.find_or_initialize_by(phone: '+38(067)111-11-11')
 admin.name = 'Admin'
 admin.password = TEST_PASSWORD
 admin.password_confirmation = TEST_PASSWORD
 admin.save!
 
-doctor = Doctor.find_or_initialize_by(phone: '067 222 22 22')
+doctor = Doctor.find_or_initialize_by(phone: '+38(067)222-22-22')
 doctor.name = 'Doctor'
 doctor.category =  Category.first
 doctor.password = TEST_PASSWORD
 doctor.password_confirmation = TEST_PASSWORD
 doctor.save!
 
-patient = Patient.find_or_initialize_by(phone: '067 333 33 33')
+patient = Patient.find_or_initialize_by(phone: '+38(067)333-33-33')
 patient.name = 'Patient'
 patient.password = TEST_PASSWORD
 patient.password_confirmation = TEST_PASSWORD
@@ -35,7 +33,7 @@ def create_doctors
     break if category.doctors.count >= 2
     2.times do
       doctor = category.doctors.create!(
-        phone: Faker::PhoneNumber.phone_number,
+        phone: Faker::Base.numerify('+38(0##)###-##-##'),
         name:  Faker::Name.name,
         password: Faker::Internet.password
       )
@@ -48,7 +46,7 @@ def create_patients
   return if Patient.count >= 10
   10.times do
     Patient.create!(
-      phone: Faker::PhoneNumber.phone_number,
+      phone: Faker::Base.numerify('+38(0##)###-##-##'),
       name:  Faker::Name.name,
       password: Faker::Internet.password
     )

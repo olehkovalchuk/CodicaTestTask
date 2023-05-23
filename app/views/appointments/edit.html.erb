@@ -1,0 +1,23 @@
+<%= render "shared/links"%>
+<%= form_with model: @appointment do |f| %>
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <h2 class="page-title"><%= @appointment.patient.name %> Appointment</h2>
+    <div class="bg-light d-flex justify-content-between mb-3 w-50">
+      <span>Patient: <%= @appointment.patient.name  %></span>
+    </div>
+    <div class="bg-light d-flex justify-content-between mb-3 w-50">
+      <span>Doctor: <%= @appointment.doctor.name %></span>
+    </div>
+    <div class="bg-light d-flex justify-content-between mb-3 w-50">
+      <span>Status: <%= @appointment.status %></span>
+    </div>
+    <div class="form-group mb-3 w-50">
+      <%= f.label "Recommendation:", class: "form-label"%>
+      <%= f.text_area :recommendation, autocomplete: "name", class: "form-control" %>
+    </div>
+    
+    <div class="mb-3 d-flex align-items-center justify-content-center">
+      <%= f.submit "Update and close", class:"btn btn-sm btn-primary rounded-pill" %>
+    </div>
+  </div>
+<% end %>

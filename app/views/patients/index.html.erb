@@ -1,0 +1,19 @@
+<%= render "shared/links"%>
+<div class="d-flex flex-column justify-content-center align-items-center">
+  <h2 class="page-title">Patients List</h2>
+  <table class="table table-striped text-center mb-3 w-50">
+    <thead>
+      <tr>
+        <th scope="col">Patients name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @patients.each do |patient| %>
+        <tr>
+          <td><%= patient.name %></td>
+          <td> <%= link_to "Leave Recommendation", edit_appointment_path(appointmetn_to_doctor(patient)), class: "btn btn-sm btn-primary rounded-pill" %></td>
+        </tr> 
+      <% end %>
+    </tbody>
+  </table>
+</div>
