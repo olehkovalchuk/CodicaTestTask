@@ -12,7 +12,7 @@
         <td><%= appointment.status %></td>
         <td>
           <% if appointment.opened? %>
-            <%= link_to "Leave Recommendation", edit_doctor_appointment_path(current_user, appointment),  class: "btn btn-sm btn-primary rounded-pill" %>
+            <%= link_to "Leave Recommendation", edit_appointment_path(appointment),  class: "btn btn-sm btn-primary rounded-pill" %>
           <% end %>
         </td>
       </tr>
