@@ -52,6 +52,7 @@ gem 'devise'
 gem 'activeadmin'
 gem 'sass-rails'
 gem 'cancancan'
+gem 'aws-sdk-s3'
 
 
 group :development, :test do

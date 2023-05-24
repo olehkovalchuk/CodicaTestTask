@@ -21,7 +21,9 @@ class ApplicationController < ActionController::Base
   private
 
   def redirect_admin
-    if current_user.admin? && params[:controller] != "admin"
+    return unless user_signed_in?
+    
+    if current_user.admin? && !params[:controller].include?('admin')
       respond_to do |format|
         format.html { redirect_to admin_root_path, alert: "Unauthorized Access!" }
       end
@@ -29,7 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :phone, :password)}
+    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :phone, :password, :password_confirmation, :avatar)}
     devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name, :phone, :password, :current_password)}
   end
 

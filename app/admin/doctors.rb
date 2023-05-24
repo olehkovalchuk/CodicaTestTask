@@ -1,5 +1,5 @@
 ActiveAdmin.register Doctor do
-  permit_params :phone, :name, :category_id, :password, :password_confirmation
+  permit_params :phone, :name, :category_id, :password, :password_confirmation, :avatar
 
   index do
     selectable_column
@@ -23,6 +23,7 @@ ActiveAdmin.register Doctor do
       f.input :phone
       f.input :name
       f.input :category
+      f.input :avatar, as: :file
       f.input :password
       f.input :password_confirmation
     end
@@ -34,6 +35,9 @@ ActiveAdmin.register Doctor do
       row :name
       row :phone
       row :category 
+      row :avatar do |a|
+        image_tag(url_for(a.avatar), {style: 'width: 100px'}) if a.avatar.persisted?
+      end
       row 'open_appointments' do |doctor|
         doctor.appointments.opened
       end

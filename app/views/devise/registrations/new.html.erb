@@ -12,6 +12,11 @@
     </div>
 
     <div class="form-group mb-3 w-50">
+      <%= f.label :avatar, class: "form-label" %>
+      <%= f.file_field :avatar, class: "form-control" %>
+    </div>
+
+    <div class="form-group mb-3 w-50">
       <%= f.label :password, class:"form-label" %>
       <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em>

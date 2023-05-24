@@ -19,6 +19,8 @@ class Patient < User
   has_many :appointments, dependent: :destroy
   has_many :doctors, through: :appointments
 
+  has_one_attached :avatar
+
   before_create :set_role
 
   private

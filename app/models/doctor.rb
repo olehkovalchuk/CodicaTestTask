@@ -20,6 +20,8 @@ class Doctor < User
   has_many :patients, through: :appointments
   belongs_to :category, optional: false
 
+  has_one_attached :avatar
+
   before_create :set_role
 
   private
