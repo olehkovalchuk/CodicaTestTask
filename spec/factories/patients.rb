@@ -15,8 +15,12 @@
 #  type                   :string           default("Patient"), not null
 #  category_id            :uuid
 #
-require 'rails_helper'
-
-RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+FactoryBot.define do
+  factory :patient do
+    name { Faker::Name.name }
+    phone { Faker::Base.numerify('+38(0##)###-##-##') }
+    password { Faker::Internet.password }
+    type { 'Patient' }
+    role { 'patient' }
+  end
 end

@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-between mb-3 w-50">
   <% if current_user.appointments.present? %>
     <% if current_user.appointments.opened.present? %>
-      <%= link_to "Patients with open appointments", doctor_patients_path(current_user),  class: "btn btn-sm btn-primary rounded-pill" %>
+      <%= link_to "Patients with open appointments", doctor_patients_path(current_user),  class: "btn btn-sm btn-primary rounded-pill", id: "patients_appointments" %>
     <% else %>
       <span>You don't have open appointments</span>
     <% end %>

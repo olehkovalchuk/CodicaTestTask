@@ -16,7 +16,12 @@
 #  category_id            :uuid
 #
 FactoryBot.define do
-  factory :user do
-    
+  factory :doctor do
+    name { Faker::Name.name }
+    phone { Faker::Base.numerify('+38(0##)###-##-##') }
+    password { Faker::Internet.password }
+    category { create(:category, :therapist) }
+    type { 'Doctor' }
+    role { 'doctor' }
   end
 end

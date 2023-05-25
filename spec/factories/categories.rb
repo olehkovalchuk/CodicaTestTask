@@ -9,6 +9,18 @@
 #
 FactoryBot.define do
   factory :category do
-    name { "MyString" }
+    name { nil }
+
+    trait :therapist do
+      name { 'therapist' }
+    end
+
+    trait :neurologist do
+      name { 'neurologist' }
+    end
+
+    trait :cardiologist do
+      name { 'cardiologist' }
+    end
   end
 end

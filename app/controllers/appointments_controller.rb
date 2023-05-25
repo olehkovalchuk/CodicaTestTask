@@ -16,7 +16,7 @@ class AppointmentsController < ApplicationController
       if @appointment.save
         format.html { redirect_to appointment_path(@appointment), notice: "Appointment successfully created" }
       else
-        format.html { redirect_to root_path, alert: @appointment.errors.first.type }
+        format.html { redirect_to root_path, alert: @appointment.errors.first.message }
       end
     end
   end
@@ -33,7 +33,9 @@ class AppointmentsController < ApplicationController
     respond_to do |format|
       if @appointment.update(appointment_params)
         @appointment.closed!
-        format.html { redirect_to appointment_path(@appointment), success: "Appointment updated" }
+        format.html { redirect_to appointment_path(@appointment), notice: "Appointment updated" }
+      else
+        format.html { redirect_to edit_appointment_path(@appointment), alert: @appointment.errors.first.message }
       end
     end
   end

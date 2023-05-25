@@ -11,7 +11,7 @@
       <% @patients.each do |patient| %>
         <tr>
           <td><%= patient.name %></td>
-          <td> <%= link_to "Leave Recommendation", edit_appointment_path(appointmetn_to_doctor(patient)), class: "btn btn-sm btn-primary rounded-pill" %></td>
+          <td> <%= link_to "Leave Recommendation", edit_appointment_path(appointmetn_to_doctor(patient)), class: "btn btn-sm btn-primary rounded-pill", id: "leave_recommendation" %></td>
         </tr> 
       <% end %>
     </tbody>
