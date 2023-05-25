@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
 
   def redirect_admin
     return unless user_signed_in?
+    return if devise_controller?
     
     if current_user.admin? && !params[:controller].include?('admin')
       respond_to do |format|
